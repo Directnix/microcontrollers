@@ -12,9 +12,9 @@
     <OutputFileName>$(MSBuildProjectName)</OutputFileName>
     <OutputFileExtension>.elf</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
-    <AssemblyName>interrupt</AssemblyName>
-    <Name>interrupt</Name>
-    <RootNamespace>interrupt</RootNamespace>
+    <AssemblyName>Track1</AssemblyName>
+    <Name>Track1</Name>
+    <RootNamespace>Track1</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
