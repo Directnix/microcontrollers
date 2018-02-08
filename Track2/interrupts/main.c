@@ -5,7 +5,11 @@
  * Author : Nick van Endhoven
  */ 
 
+#define F_CPU 8000000
+
 #include <avr/io.h>
+#include <util/delay.h>
+#include <avr/interrupt.h>
 
 /******************************************************************/
 int main( void )
@@ -13,20 +17,18 @@ int main( void )
 short:			main() loop, entry point of executable
 *******************************************************************/
 {
-	// Init I/O
-	DDRD = 0xF0;			// PORTD(7:4) output, PORTD(3:0) input
+	DDRD = 0xFF;	
+	DDRC = 0x00;	
 
 	EICRA |= 0x0B;			// INT1 falling edge, INT0 rising edge
 	EIMSK |= 0x06;			// Enable INT1 & INT2
 	
-	// Enable global interrupt system
-	//SREG = 0x80;			// Of direct via SREG of via wrapper
+
 	sei();
 
 	while (1)
 	{
-		PORTD ^= (1<<7);	// Toggle PORTD.7
-		wait( 500 );
+
 	}
 
 	return 1;
