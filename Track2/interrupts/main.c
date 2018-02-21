@@ -11,22 +11,34 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 
+ISR( INT1_vect )
+{
+	PORTC = PORTC << 1;
+}
+
+ISR( INT2_vect )
+{
+	PORTC = PORTC >> 1;
+}
+
+
 /******************************************************************/
 int main( void )
 /*
 short:			main() loop, entry point of executable
 *******************************************************************/
 {
-	DDRD = 0xFF;	
-	DDRC = 0x00;	
+	DDRD = 0x00;	
+	DDRC = 0xFF;	
 
-	EICRA |= 0x0B;			// INT1 falling edge, INT0 rising edge
+	EICRA |= 0x3C;			// INT1 falling edge, INT2 rising edge
 	EIMSK |= 0x06;			// Enable INT1 & INT2
 	
-
 	sei();
+	
+	PORTC = 0x01;
 
-	while (1)
+	while (1 == 1)
 	{
 
 	}
