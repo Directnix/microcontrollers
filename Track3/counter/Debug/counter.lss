@@ -3,31 +3,31 @@ counter.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00800100  0000034c  2**0
+  0 .data         00000000  00800100  00800100  00000334  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000002d8  00000000  00000000  00000074  2**1
+  1 .text         000002c0  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000002  00800100  00800100  0000034c  2**0
+  2 .bss          00000002  00800100  00800100  00000334  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  0000034c  2**0
+  3 .comment      00000030  00000000  00000000  00000334  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  0000037c  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000364  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000070  00000000  00000000  000003b8  2**0
+  5 .debug_aranges 00000070  00000000  00000000  000003a0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00000db0  00000000  00000000  00000428  2**0
+  6 .debug_info   00000db2  00000000  00000000  00000410  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000a8d  00000000  00000000  000011d8  2**0
+  7 .debug_abbrev 00000a9f  00000000  00000000  000011c2  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000534  00000000  00000000  00001c65  2**0
+  8 .debug_line   00000527  00000000  00000000  00001c61  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000100  00000000  00000000  0000219c  2**2
+  9 .debug_frame  00000100  00000000  00000000  00002188  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000004af  00000000  00000000  0000229c  2**0
+ 10 .debug_str    000004af  00000000  00000000  00002288  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000354  00000000  00000000  0000274b  2**0
+ 11 .debug_loc    0000030c  00000000  00000000  00002737  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000050  00000000  00000000  00002a9f  2**0
+ 12 .debug_ranges 00000050  00000000  00000000  00002a43  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -126,7 +126,7 @@ Disassembly of section .text:
   a4:	b2 07       	cpc	r27, r18
   a6:	e1 f7       	brne	.-8      	; 0xa0 <.do_clear_bss_loop>
   a8:	af d0       	rcall	.+350    	; 0x208 <main>
-  aa:	14 c1       	rjmp	.+552    	; 0x2d4 <_exit>
+  aa:	08 c1       	rjmp	.+528    	; 0x2bc <_exit>
 
 000000ac <__bad_interrupt>:
   ac:	a9 cf       	rjmp	.-174    	; 0x0 <__vectors>
@@ -465,88 +465,78 @@ int main(void)
  23a:	7f 4f       	sbci	r23, 0xFF	; 255
  23c:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
  240:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
- 244:	14 d0       	rcall	.+40     	; 0x26e <__itoa_ncheck>
+ 244:	08 d0       	rcall	.+16     	; 0x256 <__itoa_ncheck>
 		lcd_display_text(itoa(count, buffer, 10));
  246:	78 df       	rcall	.-272    	; 0x138 <lcd_display_text>
- 248:	2f ef       	ldi	r18, 0xFF	; 255
- 24a:	80 e7       	ldi	r24, 0x70	; 112
- 24c:	92 e0       	ldi	r25, 0x02	; 2
- 24e:	21 50       	subi	r18, 0x01	; 1
- 250:	80 40       	sbci	r24, 0x00	; 0
- 252:	90 40       	sbci	r25, 0x00	; 0
- 254:	e1 f7       	brne	.-8      	; 0x24e <main+0x46>
- 256:	00 c0       	rjmp	.+0      	; 0x258 <main+0x50>
- 258:	00 00       	nop
- 25a:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
-		_delay_ms(100);
-		count++;
- 25e:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
- 262:	01 96       	adiw	r24, 0x01	; 1
- 264:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
- 268:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
- 26c:	dc cf       	rjmp	.-72     	; 0x226 <main+0x1e>
+ 248:	8f e1       	ldi	r24, 0x1F	; 31
+ 24a:	9e e4       	ldi	r25, 0x4E	; 78
+ 24c:	01 97       	sbiw	r24, 0x01	; 1
+ 24e:	f1 f7       	brne	.-4      	; 0x24c <main+0x44>
+ 250:	00 c0       	rjmp	.+0      	; 0x252 <main+0x4a>
+ 252:	00 00       	nop
+ 254:	e8 cf       	rjmp	.-48     	; 0x226 <main+0x1e>
 
-0000026e <__itoa_ncheck>:
- 26e:	bb 27       	eor	r27, r27
- 270:	4a 30       	cpi	r20, 0x0A	; 10
- 272:	31 f4       	brne	.+12     	; 0x280 <__itoa_ncheck+0x12>
- 274:	99 23       	and	r25, r25
- 276:	22 f4       	brpl	.+8      	; 0x280 <__itoa_ncheck+0x12>
- 278:	bd e2       	ldi	r27, 0x2D	; 45
- 27a:	90 95       	com	r25
- 27c:	81 95       	neg	r24
- 27e:	9f 4f       	sbci	r25, 0xFF	; 255
- 280:	01 c0       	rjmp	.+2      	; 0x284 <__utoa_common>
+00000256 <__itoa_ncheck>:
+ 256:	bb 27       	eor	r27, r27
+ 258:	4a 30       	cpi	r20, 0x0A	; 10
+ 25a:	31 f4       	brne	.+12     	; 0x268 <__itoa_ncheck+0x12>
+ 25c:	99 23       	and	r25, r25
+ 25e:	22 f4       	brpl	.+8      	; 0x268 <__itoa_ncheck+0x12>
+ 260:	bd e2       	ldi	r27, 0x2D	; 45
+ 262:	90 95       	com	r25
+ 264:	81 95       	neg	r24
+ 266:	9f 4f       	sbci	r25, 0xFF	; 255
+ 268:	01 c0       	rjmp	.+2      	; 0x26c <__utoa_common>
 
-00000282 <__utoa_ncheck>:
- 282:	bb 27       	eor	r27, r27
+0000026a <__utoa_ncheck>:
+ 26a:	bb 27       	eor	r27, r27
 
-00000284 <__utoa_common>:
- 284:	fb 01       	movw	r30, r22
- 286:	55 27       	eor	r21, r21
- 288:	aa 27       	eor	r26, r26
- 28a:	88 0f       	add	r24, r24
- 28c:	99 1f       	adc	r25, r25
- 28e:	aa 1f       	adc	r26, r26
- 290:	a4 17       	cp	r26, r20
- 292:	10 f0       	brcs	.+4      	; 0x298 <__utoa_common+0x14>
- 294:	a4 1b       	sub	r26, r20
- 296:	83 95       	inc	r24
- 298:	50 51       	subi	r21, 0x10	; 16
- 29a:	b9 f7       	brne	.-18     	; 0x28a <__utoa_common+0x6>
- 29c:	a0 5d       	subi	r26, 0xD0	; 208
- 29e:	aa 33       	cpi	r26, 0x3A	; 58
- 2a0:	08 f0       	brcs	.+2      	; 0x2a4 <__utoa_common+0x20>
- 2a2:	a9 5d       	subi	r26, 0xD9	; 217
- 2a4:	a1 93       	st	Z+, r26
- 2a6:	00 97       	sbiw	r24, 0x00	; 0
- 2a8:	79 f7       	brne	.-34     	; 0x288 <__utoa_common+0x4>
- 2aa:	b1 11       	cpse	r27, r1
- 2ac:	b1 93       	st	Z+, r27
- 2ae:	11 92       	st	Z+, r1
- 2b0:	cb 01       	movw	r24, r22
- 2b2:	00 c0       	rjmp	.+0      	; 0x2b4 <strrev>
+0000026c <__utoa_common>:
+ 26c:	fb 01       	movw	r30, r22
+ 26e:	55 27       	eor	r21, r21
+ 270:	aa 27       	eor	r26, r26
+ 272:	88 0f       	add	r24, r24
+ 274:	99 1f       	adc	r25, r25
+ 276:	aa 1f       	adc	r26, r26
+ 278:	a4 17       	cp	r26, r20
+ 27a:	10 f0       	brcs	.+4      	; 0x280 <__utoa_common+0x14>
+ 27c:	a4 1b       	sub	r26, r20
+ 27e:	83 95       	inc	r24
+ 280:	50 51       	subi	r21, 0x10	; 16
+ 282:	b9 f7       	brne	.-18     	; 0x272 <__utoa_common+0x6>
+ 284:	a0 5d       	subi	r26, 0xD0	; 208
+ 286:	aa 33       	cpi	r26, 0x3A	; 58
+ 288:	08 f0       	brcs	.+2      	; 0x28c <__utoa_common+0x20>
+ 28a:	a9 5d       	subi	r26, 0xD9	; 217
+ 28c:	a1 93       	st	Z+, r26
+ 28e:	00 97       	sbiw	r24, 0x00	; 0
+ 290:	79 f7       	brne	.-34     	; 0x270 <__utoa_common+0x4>
+ 292:	b1 11       	cpse	r27, r1
+ 294:	b1 93       	st	Z+, r27
+ 296:	11 92       	st	Z+, r1
+ 298:	cb 01       	movw	r24, r22
+ 29a:	00 c0       	rjmp	.+0      	; 0x29c <strrev>
 
-000002b4 <strrev>:
- 2b4:	dc 01       	movw	r26, r24
- 2b6:	fc 01       	movw	r30, r24
- 2b8:	67 2f       	mov	r22, r23
- 2ba:	71 91       	ld	r23, Z+
- 2bc:	77 23       	and	r23, r23
- 2be:	e1 f7       	brne	.-8      	; 0x2b8 <strrev+0x4>
- 2c0:	32 97       	sbiw	r30, 0x02	; 2
- 2c2:	04 c0       	rjmp	.+8      	; 0x2cc <strrev+0x18>
- 2c4:	7c 91       	ld	r23, X
- 2c6:	6d 93       	st	X+, r22
- 2c8:	70 83       	st	Z, r23
- 2ca:	62 91       	ld	r22, -Z
- 2cc:	ae 17       	cp	r26, r30
- 2ce:	bf 07       	cpc	r27, r31
- 2d0:	c8 f3       	brcs	.-14     	; 0x2c4 <strrev+0x10>
- 2d2:	08 95       	ret
+0000029c <strrev>:
+ 29c:	dc 01       	movw	r26, r24
+ 29e:	fc 01       	movw	r30, r24
+ 2a0:	67 2f       	mov	r22, r23
+ 2a2:	71 91       	ld	r23, Z+
+ 2a4:	77 23       	and	r23, r23
+ 2a6:	e1 f7       	brne	.-8      	; 0x2a0 <strrev+0x4>
+ 2a8:	32 97       	sbiw	r30, 0x02	; 2
+ 2aa:	04 c0       	rjmp	.+8      	; 0x2b4 <strrev+0x18>
+ 2ac:	7c 91       	ld	r23, X
+ 2ae:	6d 93       	st	X+, r22
+ 2b0:	70 83       	st	Z, r23
+ 2b2:	62 91       	ld	r22, -Z
+ 2b4:	ae 17       	cp	r26, r30
+ 2b6:	bf 07       	cpc	r27, r31
+ 2b8:	c8 f3       	brcs	.-14     	; 0x2ac <strrev+0x10>
+ 2ba:	08 95       	ret
 
-000002d4 <_exit>:
- 2d4:	f8 94       	cli
+000002bc <_exit>:
+ 2bc:	f8 94       	cli
 
-000002d6 <__stop_program>:
- 2d6:	ff cf       	rjmp	.-2      	; 0x2d6 <__stop_program>
+000002be <__stop_program>:
+ 2be:	ff cf       	rjmp	.-2      	; 0x2be <__stop_program>

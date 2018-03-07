@@ -7,6 +7,8 @@ Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "lcdmodule", "lcdmodule\lcdm
 EndProject
 Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "counter", "counter\counter.cproj", "{8B17B4AB-AD24-44C3-B998-A6D587DCEBFD}"
 EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "timer", "timer\timer.cproj", "{C3F4BE1B-F5FF-4997-90EB-C2FA1AF4F534}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|AVR = Debug|AVR
@@ -21,6 +23,10 @@ Global
 		{8B17B4AB-AD24-44C3-B998-A6D587DCEBFD}.Debug|AVR.Build.0 = Debug|AVR
 		{8B17B4AB-AD24-44C3-B998-A6D587DCEBFD}.Release|AVR.ActiveCfg = Release|AVR
 		{8B17B4AB-AD24-44C3-B998-A6D587DCEBFD}.Release|AVR.Build.0 = Release|AVR
+		{C3F4BE1B-F5FF-4997-90EB-C2FA1AF4F534}.Debug|AVR.ActiveCfg = Debug|AVR
+		{C3F4BE1B-F5FF-4997-90EB-C2FA1AF4F534}.Debug|AVR.Build.0 = Debug|AVR
+		{C3F4BE1B-F5FF-4997-90EB-C2FA1AF4F534}.Release|AVR.ActiveCfg = Release|AVR
+		{C3F4BE1B-F5FF-4997-90EB-C2FA1AF4F534}.Release|AVR.Build.0 = Release|AVR
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
