@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "ADleds", "ADleds\ADleds.cproj", "{DCE6C7E3-EE26-4D79-826B-08594B9AD897}"
 EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "ControlledADConversion", "ControlledADConversion\ControlledADConversion.cproj", "{A3C65B8A-1833-4D2B-BD50-FEA6998715E3}"
+EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "temprature", "temprature\temprature.cproj", "{A40485A2-702F-492A-BA51-C1C1ADF500E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|AVR = Debug|AVR
@@ -15,6 +19,14 @@ Global
 		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Debug|AVR.Build.0 = Debug|AVR
 		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Release|AVR.ActiveCfg = Release|AVR
 		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Release|AVR.Build.0 = Release|AVR
+		{A3C65B8A-1833-4D2B-BD50-FEA6998715E3}.Debug|AVR.ActiveCfg = Debug|AVR
+		{A3C65B8A-1833-4D2B-BD50-FEA6998715E3}.Debug|AVR.Build.0 = Debug|AVR
+		{A3C65B8A-1833-4D2B-BD50-FEA6998715E3}.Release|AVR.ActiveCfg = Release|AVR
+		{A3C65B8A-1833-4D2B-BD50-FEA6998715E3}.Release|AVR.Build.0 = Release|AVR
+		{A40485A2-702F-492A-BA51-C1C1ADF500E7}.Debug|AVR.ActiveCfg = Debug|AVR
+		{A40485A2-702F-492A-BA51-C1C1ADF500E7}.Debug|AVR.Build.0 = Debug|AVR
+		{A40485A2-702F-492A-BA51-C1C1ADF500E7}.Release|AVR.ActiveCfg = Release|AVR
+		{A40485A2-702F-492A-BA51-C1C1ADF500E7}.Release|AVR.Build.0 = Release|AVR
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
