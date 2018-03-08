@@ -163,5 +163,16 @@ int main()
 	writeLedDisplay(3792);
 	wait(1000);
 	writeLedDisplay(-792);
+	
+	wait(1000);
+
+	// Write POOP
+	spi_writeWord(1, 0b01011110);
+	spi_writeWord(2, 0);
+	spi_writeWord(3, 0);
+	spi_writeWord(4, 0b01011110);
+	
+	wait(1000);
+
 	return (1);
 }

@@ -3,29 +3,29 @@ FourDigitDisplay.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00800100  000002d6  2**0
+  0 .data         00000000  00800100  00800100  000002fa  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000282  00000000  00000000  00000054  2**1
+  1 .text         000002a6  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      00000030  00000000  00000000  000002d6  2**0
+  2 .comment      00000030  00000000  00000000  000002fa  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000308  2**2
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  0000032c  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 00000078  00000000  00000000  00000344  2**0
+  4 .debug_aranges 00000078  00000000  00000000  00000368  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000e2c  00000000  00000000  000003bc  2**0
+  5 .debug_info   00000ec2  00000000  00000000  000003e0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 000008dd  00000000  00000000  000011e8  2**0
+  6 .debug_abbrev 000008dd  00000000  00000000  000012a2  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000513  00000000  00000000  00001ac5  2**0
+  7 .debug_line   00000537  00000000  00000000  00001b7f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  0000010c  00000000  00000000  00001fd8  2**2
+  8 .debug_frame  0000010c  00000000  00000000  000020b8  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000004b4  00000000  00000000  000020e4  2**0
+  9 .debug_str    000004b4  00000000  00000000  000021c4  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    000002bd  00000000  00000000  00002598  2**0
+ 10 .debug_loc    000002bd  00000000  00000000  00002678  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000068  00000000  00000000  00002855  2**0
+ 11 .debug_ranges 00000068  00000000  00000000  00002935  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -110,7 +110,7 @@ Disassembly of section .text:
   94:	de bf       	out	0x3e, r29	; 62
   96:	cd bf       	out	0x3d, r28	; 61
   98:	98 d0       	rcall	.+304    	; 0x1ca <main>
-  9a:	f1 c0       	rjmp	.+482    	; 0x27e <_exit>
+  9a:	03 c1       	rjmp	.+518    	; 0x2a2 <_exit>
 
 0000009c <__bad_interrupt>:
   9c:	b1 cf       	rjmp	.-158    	; 0x0 <__vectors>
@@ -290,7 +290,7 @@ void writeLedDisplay(int value)
  19c:	f0 2d       	mov	r31, r0
  19e:	ce 01       	movw	r24, r28
  1a0:	b6 01       	movw	r22, r12
- 1a2:	46 d0       	rcall	.+140    	; 0x230 <__divmodhi4>
+ 1a2:	58 d0       	rcall	.+176    	; 0x254 <__divmodhi4>
  1a4:	f6 2e       	mov	r15, r22
  1a6:	07 2f       	mov	r16, r23
  1a8:	68 2f       	mov	r22, r24
@@ -405,84 +405,113 @@ int main()
 		wait(1000);
 	}
 	
-		
+	
 	wait(1000);
  210:	88 ee       	ldi	r24, 0xE8	; 232
  212:	93 e0       	ldi	r25, 0x03	; 3
  214:	44 df       	rcall	.-376    	; 0x9e <wait>
- 216:	80 ed       	ldi	r24, 0xD0	; 208
 	writeLedDisplay(3792);
+ 216:	80 ed       	ldi	r24, 0xD0	; 208
  218:	9e e0       	ldi	r25, 0x0E	; 14
  21a:	a6 df       	rcall	.-180    	; 0x168 <writeLedDisplay>
+	wait(1000);
  21c:	88 ee       	ldi	r24, 0xE8	; 232
  21e:	93 e0       	ldi	r25, 0x03	; 3
-	wait(1000);
  220:	3e df       	rcall	.-388    	; 0x9e <wait>
+	writeLedDisplay(-792);
  222:	88 ee       	ldi	r24, 0xE8	; 232
  224:	9c ef       	ldi	r25, 0xFC	; 252
  226:	a0 df       	rcall	.-192    	; 0x168 <writeLedDisplay>
-	writeLedDisplay(-792);
- 228:	81 e0       	ldi	r24, 0x01	; 1
- 22a:	90 e0       	ldi	r25, 0x00	; 0
- 22c:	cf 91       	pop	r28
- 22e:	08 95       	ret
+	
+	wait(1000);
+ 228:	88 ee       	ldi	r24, 0xE8	; 232
+ 22a:	93 e0       	ldi	r25, 0x03	; 3
+ 22c:	38 df       	rcall	.-400    	; 0x9e <wait>
 
-00000230 <__divmodhi4>:
+	// Write HELP
+	spi_writeWord(1, 0b01011110); //0b01011110
+ 22e:	6e e5       	ldi	r22, 0x5E	; 94
+ 230:	81 e0       	ldi	r24, 0x01	; 1
+ 232:	68 df       	rcall	.-304    	; 0x104 <spi_writeWord>
+ 234:	60 e0       	ldi	r22, 0x00	; 0
+	spi_writeWord(2, 0);
+ 236:	82 e0       	ldi	r24, 0x02	; 2
+ 238:	65 df       	rcall	.-310    	; 0x104 <spi_writeWord>
+ 23a:	60 e0       	ldi	r22, 0x00	; 0
+ 23c:	83 e0       	ldi	r24, 0x03	; 3
+	spi_writeWord(3, 0);
+ 23e:	62 df       	rcall	.-316    	; 0x104 <spi_writeWord>
+ 240:	6e e5       	ldi	r22, 0x5E	; 94
+ 242:	84 e0       	ldi	r24, 0x04	; 4
+ 244:	5f df       	rcall	.-322    	; 0x104 <spi_writeWord>
+	spi_writeWord(4, 0b01011110); //0b01111100
+ 246:	88 ee       	ldi	r24, 0xE8	; 232
+ 248:	93 e0       	ldi	r25, 0x03	; 3
+ 24a:	29 df       	rcall	.-430    	; 0x9e <wait>
+ 24c:	81 e0       	ldi	r24, 0x01	; 1
+	
+	wait(1000);
+ 24e:	90 e0       	ldi	r25, 0x00	; 0
+ 250:	cf 91       	pop	r28
+ 252:	08 95       	ret
+
+00000254 <__divmodhi4>:
+ 254:	97 fb       	bst	r25, 7
+
 	return (1);
- 230:	97 fb       	bst	r25, 7
- 232:	07 2e       	mov	r0, r23
- 234:	16 f4       	brtc	.+4      	; 0x23a <__divmodhi4+0xa>
- 236:	00 94       	com	r0
- 238:	06 d0       	rcall	.+12     	; 0x246 <__divmodhi4_neg1>
- 23a:	77 fd       	sbrc	r23, 7
- 23c:	08 d0       	rcall	.+16     	; 0x24e <__divmodhi4_neg2>
- 23e:	0b d0       	rcall	.+22     	; 0x256 <__udivmodhi4>
- 240:	07 fc       	sbrc	r0, 7
- 242:	05 d0       	rcall	.+10     	; 0x24e <__divmodhi4_neg2>
- 244:	3e f4       	brtc	.+14     	; 0x254 <__divmodhi4_exit>
+ 256:	07 2e       	mov	r0, r23
+ 258:	16 f4       	brtc	.+4      	; 0x25e <__divmodhi4+0xa>
+ 25a:	00 94       	com	r0
+ 25c:	06 d0       	rcall	.+12     	; 0x26a <__divmodhi4_neg1>
+ 25e:	77 fd       	sbrc	r23, 7
+ 260:	08 d0       	rcall	.+16     	; 0x272 <__divmodhi4_neg2>
+ 262:	0b d0       	rcall	.+22     	; 0x27a <__udivmodhi4>
+ 264:	07 fc       	sbrc	r0, 7
+ 266:	05 d0       	rcall	.+10     	; 0x272 <__divmodhi4_neg2>
+ 268:	3e f4       	brtc	.+14     	; 0x278 <__divmodhi4_exit>
 
-00000246 <__divmodhi4_neg1>:
- 246:	90 95       	com	r25
- 248:	81 95       	neg	r24
- 24a:	9f 4f       	sbci	r25, 0xFF	; 255
- 24c:	08 95       	ret
+0000026a <__divmodhi4_neg1>:
+ 26a:	90 95       	com	r25
+ 26c:	81 95       	neg	r24
+ 26e:	9f 4f       	sbci	r25, 0xFF	; 255
+ 270:	08 95       	ret
 
-0000024e <__divmodhi4_neg2>:
- 24e:	70 95       	com	r23
- 250:	61 95       	neg	r22
- 252:	7f 4f       	sbci	r23, 0xFF	; 255
+00000272 <__divmodhi4_neg2>:
+ 272:	70 95       	com	r23
+ 274:	61 95       	neg	r22
+ 276:	7f 4f       	sbci	r23, 0xFF	; 255
 
-00000254 <__divmodhi4_exit>:
- 254:	08 95       	ret
+00000278 <__divmodhi4_exit>:
+ 278:	08 95       	ret
 
-00000256 <__udivmodhi4>:
- 256:	aa 1b       	sub	r26, r26
- 258:	bb 1b       	sub	r27, r27
- 25a:	51 e1       	ldi	r21, 0x11	; 17
- 25c:	07 c0       	rjmp	.+14     	; 0x26c <__udivmodhi4_ep>
+0000027a <__udivmodhi4>:
+ 27a:	aa 1b       	sub	r26, r26
+ 27c:	bb 1b       	sub	r27, r27
+ 27e:	51 e1       	ldi	r21, 0x11	; 17
+ 280:	07 c0       	rjmp	.+14     	; 0x290 <__udivmodhi4_ep>
 
-0000025e <__udivmodhi4_loop>:
- 25e:	aa 1f       	adc	r26, r26
- 260:	bb 1f       	adc	r27, r27
- 262:	a6 17       	cp	r26, r22
- 264:	b7 07       	cpc	r27, r23
- 266:	10 f0       	brcs	.+4      	; 0x26c <__udivmodhi4_ep>
- 268:	a6 1b       	sub	r26, r22
- 26a:	b7 0b       	sbc	r27, r23
+00000282 <__udivmodhi4_loop>:
+ 282:	aa 1f       	adc	r26, r26
+ 284:	bb 1f       	adc	r27, r27
+ 286:	a6 17       	cp	r26, r22
+ 288:	b7 07       	cpc	r27, r23
+ 28a:	10 f0       	brcs	.+4      	; 0x290 <__udivmodhi4_ep>
+ 28c:	a6 1b       	sub	r26, r22
+ 28e:	b7 0b       	sbc	r27, r23
 
-0000026c <__udivmodhi4_ep>:
- 26c:	88 1f       	adc	r24, r24
- 26e:	99 1f       	adc	r25, r25
- 270:	5a 95       	dec	r21
- 272:	a9 f7       	brne	.-22     	; 0x25e <__udivmodhi4_loop>
- 274:	80 95       	com	r24
- 276:	90 95       	com	r25
- 278:	bc 01       	movw	r22, r24
- 27a:	cd 01       	movw	r24, r26
- 27c:	08 95       	ret
+00000290 <__udivmodhi4_ep>:
+ 290:	88 1f       	adc	r24, r24
+ 292:	99 1f       	adc	r25, r25
+ 294:	5a 95       	dec	r21
+ 296:	a9 f7       	brne	.-22     	; 0x282 <__udivmodhi4_loop>
+ 298:	80 95       	com	r24
+ 29a:	90 95       	com	r25
+ 29c:	bc 01       	movw	r22, r24
+ 29e:	cd 01       	movw	r24, r26
+ 2a0:	08 95       	ret
 
-0000027e <_exit>:
- 27e:	f8 94       	cli
+000002a2 <_exit>:
+ 2a2:	f8 94       	cli
 
-00000280 <__stop_program>:
- 280:	ff cf       	rjmp	.-2      	; 0x280 <__stop_program>
+000002a4 <__stop_program>:
+ 2a4:	ff cf       	rjmp	.-2      	; 0x2a4 <__stop_program>
