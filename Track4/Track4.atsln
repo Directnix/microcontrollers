@@ -9,6 +9,8 @@ Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "ControlledADConversion", "C
 EndProject
 Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "temprature", "temprature\temprature.cproj", "{A40485A2-702F-492A-BA51-C1C1ADF500E7}"
 EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "FourDigitDisplay", "FourDigitDisplay\FourDigitDisplay.cproj", "{63FC4492-0CD4-48B3-8A62-6414212C5378}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|AVR = Debug|AVR
@@ -27,6 +29,10 @@ Global
 		{A40485A2-702F-492A-BA51-C1C1ADF500E7}.Debug|AVR.Build.0 = Debug|AVR
 		{A40485A2-702F-492A-BA51-C1C1ADF500E7}.Release|AVR.ActiveCfg = Release|AVR
 		{A40485A2-702F-492A-BA51-C1C1ADF500E7}.Release|AVR.Build.0 = Release|AVR
+		{63FC4492-0CD4-48B3-8A62-6414212C5378}.Debug|AVR.ActiveCfg = Debug|AVR
+		{63FC4492-0CD4-48B3-8A62-6414212C5378}.Debug|AVR.Build.0 = Debug|AVR
+		{63FC4492-0CD4-48B3-8A62-6414212C5378}.Release|AVR.ActiveCfg = Release|AVR
+		{63FC4492-0CD4-48B3-8A62-6414212C5378}.Release|AVR.Build.0 = Release|AVR
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
